@@ -11,9 +11,9 @@ This app is built with:
 
 To get up and running you need Node, Grunt, and Bower.  If you have all those run...
 
-npm install
-bower install (for now you will have to move your bower_components folder to the app folder until I get things fixed up)
-npm start
+- npm install
+- bower install (for now you will have to move your bower_components folder to the app folder until I get things fixed up)
+- npm start
 
 Things are in very rough shape right now.  This is not even close to an alpha... just putting this out there to see if there is interest
 
