@@ -1,0 +1,19 @@
+{
+  "name": "leveledit",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "1.2.10",
+    "jquery": "~1.10.2",
+    "bootstrap": "~3.0.3",
+    "angular-cookies": "1.2.10",
+    "angular-sanitize": "1.2.10",
+    "angular-route": "1.2.10",
+    "angular-bootstrap": "0.10.0",
+    "fabric": "~1.4.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.10",
+    "angular-scenario": "1.2.10"
+  }
+}
+

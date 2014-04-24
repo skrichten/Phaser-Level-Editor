@@ -1,0 +1,95 @@
+<div main-menu="menuData"></div>
+<div id="ui-panels">
+  <div class="ui-panel" id="ui-left">
+    <accordion close-others="false">
+      <accordion-group heading="Inspector" is-open="true">
+        <div inspector="fabState.selectedObj"></div>
+      </accordion-group>
+      <accordion-group heading="MiniMap" is-open="true">
+        map goes here
+      </accordion-group>
+    </accordion>
+  </div>
+
+  <div class="ui-panel" id="ui-right">
+    <accordion close-others="false">
+      <accordion-group heading="Assets" is-open="true">
+        <div id="a-mgr" asset-mgr="mData.assets" selected="fabState.selectedObj"></div>
+      </accordion-group>
+      <accordion-group heading="Hierarchy" is-open="true">
+        <div hierarchy="fabState.objects" selected="fabState.selectedObj"></div>
+      </accordion-group>
+    </accordion>
+  </div>
+</div>
+
+  <div id="map-viewport" data-map-display="mData" >
+  </div>
+
+
+<script type="text/ng-template" id="assetMgr.html">
+  <input id="img-file" type="file" accept="image/*"
+         onchange="angular.element(this).scope().selectedFile(this)"/>
+  <button type="button" class="btn btn-default" data-ng-click="selectFile()">New Asset</button>
+  <ul>
+    <li ng-repeat="a in assets" ng-click="assetClick(a)">
+      {{a.ID}}
+    </li>
+  </ul>
+</script>
+
+<script type="text/ng-template" id="inspector.html">
+  <div id="inspector" data-ng-if="selected">
+    <div><input type="text" ng-model="selected.ID" /></div>
+    <div class="props">
+      <p>Properties</p>
+      <table>
+        <tr>
+          <td>Position: </td>
+          <td>x: </td>
+          <td><input type="text" ng-model="selected.left" /></td>
+          <td>y: </td>
+          <td><input type="text" ng-model="selected.top" /></td>
+        </tr><tr>
+          <td>Scale: </td>
+          <td>x: </td>
+          <td><input type="text" ng-model="selected.scaleX" /></td>
+          <td>y: </td>
+          <td><input type="text" ng-model="selected.scaleY" /></td>
+        </tr>
+        </table>
+        <table>
+        <tr>
+          <td>angle:</td>
+          <td><input type="text" ng-model="selected.angle" /></td>
+        </tr><tr>
+          <td>opacity</td>
+          <td><input type="number" ng-model="selected.opacity" max="1.0" min="0" step=".1" /></td>
+        </tr><tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <img id="preview" ng-src="file://{{filePath}}" width="250" height="200" />
+    </div>
+    <button type="button" ng-click="groupSelected()">Group Selected</button>
+  </div>
+</script>
+
+<script type="text/ng-template" id="hierarchy.html">
+  <div id="h-list">
+    <div ng-repeat="o in objects" ng-class="{selected : o == selected}"
+            ng-click="select(o)">
+      {{o.ID}}
+    </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="miniMap.html">
+  <div>Mini Map goes here</div>
+</script>
+
+
+

@@ -1,0 +1,60 @@
+Make asset ID unique when importing.
+Need to clear group after removing an object and only one left in the group.
+Need to adjust position of object after removing from group
+For layers, write custom grouping code?
+on hierarchy dbl click, scroll to item.
+Make preview image scale with correct proportions intact.
+
+context menus
+Copy/paste
+duplicate
+delete selected
+ungroup
+select in group
+Save/Load
+Grouping
+Filters on sprites
+
+
+
+Map settings:
+Width, Height
+BG Color
+Show Grid, Grid size
+
+Hierarchy:
+show/hide each object
+lock/unlock each object
+Change z-order for objects
+
+
+Asset Manager -spritesheets?, atlases?
+
+Sprite (in map) functions:
+-Z order ( from layer manager?)
+-Grouping (fabric groups -> phaser groups)
+
+Inspector
+
+
+
+
+Mini Map
+
+Zoom - https://github.com/kangax/fabric.js/issues/731
+
+Non sprite objects like triggers, spawners, etc...
+Generate code for sprite classes?
+Atlas support?
+Collider geometry?
+
+
+Level
+  Assets
+    Images
+  Layers
+    Layer
+      Groups
+      Sprites
+      Triggers
+      Spawners
