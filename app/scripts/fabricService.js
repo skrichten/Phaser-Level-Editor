@@ -19,6 +19,17 @@ angular.module('leveleditApp')
         scrollY = y;
       }
 
+      var getGroupItemClicked = function (group, mPos) {
+        var clicked = null;
+        var p = group.toLocalPoint(mPos);
+        group.forEachObject(function(object,i) {
+          if (object.containsPoint(p)) {
+            clicked = object;
+          }
+        });
+        return clicked;
+      };
+
       /**
        * Creates a new fabric instance given the canvas element ID
        * @param id - id of the canvas element
@@ -50,46 +61,28 @@ angular.module('leveleditApp')
           // from the group.
           if (options.target && options.e.shiftKey) {
 
-            var thisTarget = options.target;
+            var target = options.target;
+            if (!target.isType('group')) return;
             var mousePos = fab.getPointer(options.e);
+            var object = getGroupItemClicked(target, mousePos);
+            if (!object) return;
 
-            if (thisTarget.isType('group')) {
-
-              var groupPos = {
-                x: thisTarget.left,
-                y: thisTarget.top
-              }
-
-              thisTarget.forEachObject(function(object,i) {
-
-                var objectPos = {
-                  xStart: (groupPos.x - (object.left*-1) )  - (object.width / 2),
-                  xEnd: (groupPos.x - (object.left*-1)) + (object.width / 2),
-                  yStart: (groupPos.y - (object.top*-1)) - (object.height / 2),
-                  yEnd: (groupPos.y - (object.top*-1)) + (object.height / 2)
-                }
-
-                if (mousePos.x >= objectPos.xStart && mousePos.x <= (objectPos.xEnd)) {
-
-                  if (mousePos.y >= objectPos.yStart && mousePos.y <= objectPos.yEnd) {
-
-                    /*
-                    * maybe try cloning the group, ungroup, then delete others?
-                     */
-                    object.clone(function(c){
-                      c.name =
-                      fab.add(c);
-                      thisTarget.removeWithUpdate(object);
-                      thisTarget.forEachObject(function(obj,x) {
-                        obj.active = false;
-                      });
-                      redraw();
-                    });
-                  }
-                }
-
+            object.clone(function(c){
+              //c.name =
+              fab.add(c);
+              var newP = target.getCenterPoint().add(object.getCenterPoint());
+              c.setPositionByOrigin(newP, 'center', 'center');
+              //c.scale = target.scale;
+              //c.angle = target.angle;
+              target.removeWithUpdate(object);
+              target.forEachObject(function(obj,x) {
+                obj.active = false;
               });
-            }
+              $timeout(function(){
+                fab.setActiveObject(c);
+                redraw();
+              },300)
+            });
 
           }
 
