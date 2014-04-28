@@ -11,9 +11,15 @@ angular.module('leveleditApp')
           var w = config.width || 960;
           var h = config.height || 640;
           var id = config.id || "map-canvas";
-          var canvasEl = angular.element('<canvas/>', {id: id}).prop({
-            width: w, height: h
-          });
+          var canvasEl = angular.element('<canvas/>', {id: id});
+
+          var applyConfig = function() {
+            fab.backgroundColor = config.bgColor;
+            fab.setDimensions({
+              width: config.width,
+              height: config.height
+            });
+          };
 
           var debounce = function(func, wait) {
             var timeout;
@@ -35,7 +41,15 @@ angular.module('leveleditApp')
 
           element.append(canvasEl);
           var fab = fabricService.create(id, element.attr('id'));
+          applyConfig();
           element.scroll(onscroll);
+          fab.renderAll();
+
+          scope.$watch('mapDisplay.config', function(){
+            if (canvasEl) {
+              applyConfig()
+            }
+          });
 
         }
       };

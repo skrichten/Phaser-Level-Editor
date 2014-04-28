@@ -4,6 +4,7 @@ Need to adjust position of object after removing from group
 For layers, write custom grouping code?
 on hierarchy dbl click, scroll to item.
 Make preview image scale with correct proportions intact.
+Remove canvasID from config?
 
 context menus
 Copy/paste

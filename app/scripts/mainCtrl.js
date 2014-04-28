@@ -7,7 +7,5 @@ angular.module('leveleditApp')
       $scope.file = null;
       $scope.state = ms.state;
       $scope.fabState = fs.fabState;
-      var mData = $scope.mData = ms.mapData;
-
     })
 

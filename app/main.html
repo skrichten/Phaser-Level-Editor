@@ -14,7 +14,7 @@
   <div class="ui-panel" id="ui-right">
     <accordion close-others="false">
       <accordion-group heading="Assets" is-open="true">
-        <div id="a-mgr" asset-mgr="mData.assets" selected="fabState.selectedObj"></div>
+        <div id="a-mgr" asset-mgr="state.mapData.assets" selected="fabState.selectedObj"></div>
       </accordion-group>
       <accordion-group heading="Hierarchy" is-open="true">
         <div hierarchy="fabState.objects" selected="fabState.selectedObj"></div>
@@ -23,7 +23,7 @@
   </div>
 </div>
 
-  <div id="map-viewport" data-map-display="mData" >
+  <div id="map-viewport" data-map-display="state.mapData" >
   </div>
 
 
