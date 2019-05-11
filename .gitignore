@@ -2,3 +2,8 @@
 app/bower_components
 bower_components
 node_modules
+app/404.html
+app/favicon.ico
+myMap.json
+myMap2.json
+app/.htaccess
